@@ -6,12 +6,15 @@ import { PriceHistoryType } from '../../../../types/priceHistory.type';
 
 const PRICE_HISTORY_LENGTH = 100;
 
-const createPriceHistory = (): PriceHistoryType => {
+const createPriceHistory = (
+	startDate: number,
+	endDate: number
+): PriceHistoryType => {
 	const priceHistory: PriceHistoryType = {
 		timestamp: faker.datatype
 			.datetime({
-				min: new Date('2005-01-01').getTime(),
-				max: new Date().getTime(),
+				min: new Date(startDate).getTime(),
+				max: new Date(endDate).getTime(),
 			})
 			.getTime(),
 		price: faker.datatype.number({
@@ -53,10 +56,7 @@ export default async function userHandler(
 	res: NextApiResponse
 ) {
 	try {
-		const {
-			query: { nodeId },
-			method,
-		} = req;
+		const { query, method } = req;
 		await NextCors(req, res, {
 			// Options
 			methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE'],
@@ -68,13 +68,23 @@ export default async function userHandler(
 				const personalPriceHistory: PriceHistoryType[] = Array.from({
 					length: PRICE_HISTORY_LENGTH,
 				})
-					.map(() => createPriceHistory())
+					.map(() =>
+						createPriceHistory(
+							parseInt(query.startDate as string),
+							parseInt(query.endDate as string)
+						)
+					)
 					.sort((a, b) => a.timestamp - b.timestamp);
 
 				const marketPriceHistory = Array.from({
 					length: PRICE_HISTORY_LENGTH,
 				})
-					.map(() => createPriceHistory())
+					.map(() =>
+						createPriceHistory(
+							parseInt(query.startDate as string),
+							parseInt(query.endDate as string)
+						)
+					)
 					.sort((a, b) => a.timestamp - b.timestamp);
 
 				const aggregatedPersonalPriceHistory =
