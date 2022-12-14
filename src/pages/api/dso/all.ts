@@ -31,9 +31,11 @@ export default async function userHandler(
 					},
 				];
 				res.status(200).json(dsos);
+				break;
 			default:
 				res.setHeader('Allow', ['GET']);
 				res.status(405).end(`Method ${method} Not Allowed`);
+				break;
 		}
 	} catch (error: any) {
 		res.status(400).json({ error: error?.message });
