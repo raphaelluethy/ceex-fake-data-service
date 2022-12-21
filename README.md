@@ -1,3 +1,15 @@
-# Create T3 App
+# CEEX Fake Data Service
 
-This is an app bootstrapped according to the [init.tips](https://init.tips) stack, also known as the T3-Stack.
+## Run Locally
+
+```shell
+npm install
+npm run start
+```
+
+## Run with Docker
+
+```shell
+docker build -t ceex-fake .
+docker run --rm -p 3000:3000 ceex-fake 
+```
