@@ -4,7 +4,7 @@ import NextCors from 'nextjs-cors';
 import { MetricsType } from '../../../../types/metrics.type';
 import { PriceHistoryType } from '../../../../types/priceHistory.type';
 
-const PRICE_HISTORY_LENGTH = 50;
+const PRICE_HISTORY_LENGTH = 55;
 
 const createPriceHistory = (startDate: number, endDate: number): PriceHistoryType => {
     const priceHistory: PriceHistoryType = {
