@@ -1,4 +1,4 @@
 export type DSOType = {
-	id: string;
-	name: string;
+    id: string;
+    name: string;
 };

@@ -11,5 +11,5 @@ npm run start
 
 ```shell
 docker build -t ceex-fake .
-docker run --rm -p 3000:3000 ceex-fake 
+docker run --rm -p 3000:3000 ceex-fake
 ```
