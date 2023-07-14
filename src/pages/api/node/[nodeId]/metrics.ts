@@ -96,7 +96,7 @@ export default async function userHandler(
           Math.round(
             (personalPriceHistory.reduce((acc, cur) => acc + cur.price, 0) /
               personalPriceHistory.length) *
-              1000
+            1000
           ) / 1000;
 
         const amountCommunity = faker.datatype.number({
